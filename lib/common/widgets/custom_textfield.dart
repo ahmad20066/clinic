@@ -1,77 +1,65 @@
+import 'package:clinic/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import '../constants/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final double? width;
-  final VoidCallback? onTap;
-  final bool readOnly;
-  final String? Function(String?)? validator;
-  final String hintText;
-  final int? maxLines;
-  final TextInputType? keyboardType;
-  final bool optional;
-  final double opacity;
-  final bool? isEnabled;
-  final Widget? icon;
-  final void Function(String)? onChanged;
-  final Widget? suffix;
+  TextEditingController textController;
+  String labelText;
+  bool isPrivate;
+  double pMargin, hmargin;
+  IconData? preIcon;
+  TextInputType? type;
+  bool isLarge;
+  double? width;
+  TextInputAction action;
 
-  const CustomTextField(
-      {Key? key,
-      required this.controller,
+  CustomTextField(
+      {super.key,
+      required this.textController,
+      required this.labelText,
+      required this.pMargin,
+      required this.hmargin,
+      this.isPrivate = false,
+      this.type,
+      this.isLarge = false,
+      this.action = TextInputAction.next,
       this.width,
-      this.opacity = 1,
-      this.onTap,
-      this.readOnly = false,
-      this.validator,
-      this.icon,
-      this.optional = false,
-      required this.hintText,
-      this.maxLines,
-      this.keyboardType,
-      this.isEnabled = true,
-      this.onChanged,
-      this.suffix})
-      : super(key: key);
+      this.preIcon});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: height,
-      width: width ?? 335.w,
-      decoration: BoxDecoration(
-          color: AppColors.whiteColor.withOpacity(opacity),
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Color.fromRGBO(173, 173, 173, 1))),
+      width: width,
+      height: isLarge ? 100.h : null,
+      margin: EdgeInsets.symmetric(horizontal: hmargin, vertical: pMargin),
       child: TextFormField(
-        autovalidateMode: AutovalidateMode.always,
-        onTap: onTap,
-        enabled: isEnabled,
-        readOnly: readOnly,
-        maxLines: maxLines,
-        onChanged: onChanged,
-        keyboardType: keyboardType ?? TextInputType.name,
-        controller: controller,
-        validator: validator,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          suffixIcon: suffix,
-          contentPadding: REdgeInsets.symmetric(
-              horizontal: 15.w,
-              vertical: icon == null && suffix == null ? 0 : 15.h),
-          hintText: hintText.tr + (optional ? " (${"optional".tr})" : ""),
-          prefixIcon: icon,
-          alignLabelWithHint: false,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .labelMedium!
-              .copyWith(color: Color.fromRGBO(137, 137, 137, 1)),
-        ),
-      ),
+          keyboardType: type,
+          obscureText: isLarge ? false : isPrivate,
+          controller: textController,
+          maxLines: isLarge ? 10 : 1,
+          textInputAction: action,
+          decoration: InputDecoration(
+            prefixIcon: preIcon == null
+                ? null
+                : Icon(
+                    preIcon,
+                    color: AppColors.primaryColor,
+                  ),
+            filled: true,
+            fillColor: Colors.white,
+            isDense: true,
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 22, horizontal: 5),
+            border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black38),
+                borderRadius: BorderRadius.circular(10)),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blueGrey),
+                borderRadius: BorderRadius.circular(10)),
+            hintText: labelText,
+            hintStyle:
+                TextStyle(color: AppColors.primaryColor, fontSize: 15.sp),
+          )),
     );
   }
 }

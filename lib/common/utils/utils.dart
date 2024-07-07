@@ -1,17 +1,13 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:syncfusion_flutter_core/core.dart';
 
 import '../constants/app_colors.dart';
 import '../widgets/shimmer_placeholder.dart';
@@ -36,19 +32,19 @@ class Utils {
   //     rethrow;
   //   }
   // }
-  static Widget Function(BuildContext, Widget, int?, bool)?
-      imageLoadingBuilder() {
-    return (_, image, loadingBuilder, __) {
-      if (loadingBuilder == null) {
-        return ShimmerPlaceholder(
-            child: Container(
-          width: 80.w,
-        ));
-      }
+  // static Widget Function(BuildContext, Widget, int?, bool)?
+  //     imageLoadingBuilder() {
+  //   return (_, image, loadingBuilder, __) {
+  //     if (loadingBuilder == null) {
+  //       return ShimmerPlaceholder(
+  //           child: Container(
+  //         width: 80.w,
+  //       ));
+  //     }
 
-      return image;
-    };
-  }
+  //     return image;
+  //   };
+  // }
 
   static Widget Function(BuildContext, Object, StackTrace?)?
       imageErrorBuilder() {
@@ -78,24 +74,24 @@ class Utils {
     return file;
   }
 
-  static Future<File?> compressImage(File file) async {
-    try {
-      final filePath = file.path;
-      final lastIndex = filePath.lastIndexOf(RegExp(r'.jp'));
-      final splitted = filePath.substring(0, (lastIndex));
-      final outPath = "${splitted}_out${filePath.substring(lastIndex)}";
-      var result = await FlutterImageCompress.compressAndGetFile(
-        file.absolute.path,
-        outPath,
-        quality: 88,
-      );
+  // static Future<File?> compressImage(File file) async {
+  //   try {
+  //     final filePath = file.path;
+  //     final lastIndex = filePath.lastIndexOf(RegExp(r'.jp'));
+  //     final splitted = filePath.substring(0, (lastIndex));
+  //     final outPath = "${splitted}_out${filePath.substring(lastIndex)}";
+  //     var result = await FlutterImageCompress.compressAndGetFile(
+  //       file.absolute.path,
+  //       outPath,
+  //       quality: 88,
+  //     );
 
-      return File(result!.path);
-    } on CompressError catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
+  //     return File(result!.path);
+  //   } on CompressError catch (e) {
+  //     print(e);
+  //     rethrow;
+  //   }
+  // }
 
   static String dateFormat(DateTime date, {String expression = "yyyy/MM/dd"}) {
     return DateFormat(expression).format(date);
@@ -249,18 +245,18 @@ class Utils {
   //   }
   // }
 
-  static Future<String?> pickfilefrommemory() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowedExtensions: ['pdf', 'png', 'jpg', 'jfif', 'HEIC'],
-      type: FileType.custom,
-    );
-    if (result != null) {
-      final file = result.files.first;
-      String biographyfile = file.path!;
-      return biographyfile;
-    }
-    return null;
-  }
+  // static Future<String?> pickfilefrommemory() async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //     allowedExtensions: ['pdf', 'png', 'jpg', 'jfif', 'HEIC'],
+  //     type: FileType.custom,
+  //   );
+  //   if (result != null) {
+  //     final file = result.files.first;
+  //     String biographyfile = file.path!;
+  //     return biographyfile;
+  //   }
+  //   return null;
+  // }
 
   static bool isValidDateFormat(String input) {
     try {
@@ -419,52 +415,52 @@ class Utils {
     }
   }
 
-  static Future<dynamic>? getHijriDate(context,
-      {HijriDatePickerController? controller,
-      Function(Object?)? onChanged}) async {
-    dynamic timepicked;
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              content: SizedBox(
-            height: 360.h,
-            width: 400.w,
-            child: SfHijriDateRangePicker(
-                cancelText: 'Cancel'.tr,
-                confirmText: "Ok".tr,
-                minDate: HijriDateTime.fromDateTime(
-                    DateTime.now().add(Duration(days: 2))),
-                onCancel: () {
-                  Get.back();
-                },
-                enablePastDates: false,
-                controller: controller,
-                viewSpacing: 10.w,
-                headerHeight: 20.h,
-                showTodayButton: false,
-                showActionButtons: true,
-                view: HijriDatePickerView.month,
-                selectionMode: DateRangePickerSelectionMode.single,
-                selectionShape: DateRangePickerSelectionShape.circle,
-                initialDisplayDate: HijriDateTime.fromDateTime(
-                    DateTime.now().add(Duration(days: 2))),
-                initialSelectedDate: HijriDateTime.fromDateTime(
-                    DateTime.now().add(Duration(days: 2))),
-                showNavigationArrow: true,
-                selectionColor: AppColors.primaryColor,
-                toggleDaySelection: false,
-                monthViewSettings: const HijriDatePickerMonthViewSettings(
-                  dayFormat: "",
-                ),
-                onSubmit: (val) {
-                  timepicked = val;
-                  Get.back();
-                }),
-          ));
-        });
-    return timepicked;
-  }
+  // static Future<dynamic>? getHijriDate(context,
+  //     {HijriDatePickerController? controller,
+  //     Function(Object?)? onChanged}) async {
+  //   dynamic timepicked;
+  //   await showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //             content: SizedBox(
+  //           height: 360.h,
+  //           width: 400.w,
+  //           child: SfHijriDateRangePicker(
+  //               cancelText: 'Cancel'.tr,
+  //               confirmText: "Ok".tr,
+  //               minDate: HijriDateTime.fromDateTime(
+  //                   DateTime.now().add(Duration(days: 2))),
+  //               onCancel: () {
+  //                 Get.back();
+  //               },
+  //               enablePastDates: false,
+  //               controller: controller,
+  //               viewSpacing: 10.w,
+  //               headerHeight: 20.h,
+  //               showTodayButton: false,
+  //               showActionButtons: true,
+  //               view: HijriDatePickerView.month,
+  //               selectionMode: DateRangePickerSelectionMode.single,
+  //               selectionShape: DateRangePickerSelectionShape.circle,
+  //               initialDisplayDate: HijriDateTime.fromDateTime(
+  //                   DateTime.now().add(Duration(days: 2))),
+  //               initialSelectedDate: HijriDateTime.fromDateTime(
+  //                   DateTime.now().add(Duration(days: 2))),
+  //               showNavigationArrow: true,
+  //               selectionColor: AppColors.primaryColor,
+  //               toggleDaySelection: false,
+  //               monthViewSettings: const HijriDatePickerMonthViewSettings(
+  //                 dayFormat: "",
+  //               ),
+  //               onSubmit: (val) {
+  //                 timepicked = val;
+  //                 Get.back();
+  //               }),
+  //         ));
+  //       });
+  //   return timepicked;
+  // }
 
   static Future<TimeOfDay?> pickTime(context) async {
     return await showTimePicker(
@@ -480,45 +476,45 @@ class Utils {
         });
   }
 
-  static Future<dynamic>? getMiladiDate(context,
-      {DateRangePickerController? controller,
-      Function(DateRangePickerSelectionChangedArgs)? onChanged}) async {
-    dynamic timepicked;
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              content: SizedBox(
-            height: 360.h,
-            width: 400.w,
-            child: SfDateRangePicker(
-              cancelText: 'Cancel'.tr,
-              confirmText: "Ok".tr,
-              minDate: DateTime.now().add(Duration(days: 2)),
-              onCancel: () {
-                Get.back();
-              },
-              enablePastDates: false,
-              controller: controller,
-              onSelectionChanged: onChanged,
-              viewSpacing: 10.w,
-              headerHeight: 20.h,
-              showTodayButton: false,
-              initialDisplayDate: DateTime.now().add(Duration(days: 2)),
-              initialSelectedDate: DateTime.now().add(Duration(days: 2)),
-              showActionButtons: true,
-              selectionMode: DateRangePickerSelectionMode.single,
-              selectionShape: DateRangePickerSelectionShape.circle,
-              showNavigationArrow: true,
-              selectionColor: AppColors.primaryColor,
-              toggleDaySelection: false,
-              onSubmit: (val) {
-                timepicked = val;
-                Get.back();
-              },
-            ),
-          ));
-        });
-    return timepicked;
-  }
+  // static Future<dynamic>? getMiladiDate(context,
+  //     {DateRangePickerController? controller,
+  //     Function(DateRangePickerSelectionChangedArgs)? onChanged}) async {
+  //   dynamic timepicked;
+  //   await showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //             content: SizedBox(
+  //           height: 360.h,
+  //           width: 400.w,
+  //           child: SfDateRangePicker(
+  //             cancelText: 'Cancel'.tr,
+  //             confirmText: "Ok".tr,
+  //             minDate: DateTime.now().add(Duration(days: 2)),
+  //             onCancel: () {
+  //               Get.back();
+  //             },
+  //             enablePastDates: false,
+  //             controller: controller,
+  //             onSelectionChanged: onChanged,
+  //             viewSpacing: 10.w,
+  //             headerHeight: 20.h,
+  //             showTodayButton: false,
+  //             initialDisplayDate: DateTime.now().add(Duration(days: 2)),
+  //             initialSelectedDate: DateTime.now().add(Duration(days: 2)),
+  //             showActionButtons: true,
+  //             selectionMode: DateRangePickerSelectionMode.single,
+  //             selectionShape: DateRangePickerSelectionShape.circle,
+  //             showNavigationArrow: true,
+  //             selectionColor: AppColors.primaryColor,
+  //             toggleDaySelection: false,
+  //             onSubmit: (val) {
+  //               timepicked = val;
+  //               Get.back();
+  //             },
+  //           ),
+  //         ));
+  //       });
+  //   return timepicked;
+  // }
 }

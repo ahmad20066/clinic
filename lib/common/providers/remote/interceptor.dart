@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
@@ -18,18 +18,18 @@ class AppInterceptors extends Interceptor {
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    debugPrint("request is sending");
-    debugPrint(
-        "REQUEST[${options.method}] => PATH: ${EndPoints.baseUrl}${options.path}");
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      if (!isNointernet) {
-        isNointernet = false;
-        return handler.reject(
-            DioException(requestOptions: options, message: "no_internet".tr));
-      }
-      return;
-    }
+    // debugPrint("request is sending");
+    // debugPrint(
+    //     "REQUEST[${options.method}] => PATH: ${EndPoints.baseUrl}${options.path}");
+    // final connectivityResult = await (Connectivity().checkConnectivity());
+    // if (connectivityResult == ConnectivityResult.none) {
+    //   if (!isNointernet) {
+    //     isNointernet = false;
+    //     return handler.reject(
+    //         DioException(requestOptions: options, message: "no_internet".tr));
+    //   }
+    //   return;
+    // }
 
     return handler.next(options);
   }
@@ -39,19 +39,19 @@ class AppInterceptors extends Interceptor {
     debugPrint("response is getting");
     isNointernet = false;
 
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      print("no internet");
-    });
-    if (connectivityResult == ConnectivityResult.none) {
-      if (!isNointernet) {
-        isNointernet = false;
-        return handler.reject(DioException(
-            requestOptions: response.requestOptions,
-            message: "no_internet".tr));
-      }
-      return;
-    }
+    // final connectivityResult = await (Connectivity().checkConnectivity());
+    // Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    //   print("no internet");
+    // });
+    // if (connectivityResult == ConnectivityResult.none) {
+    //   if (!isNointernet) {
+    //     isNointernet = false;
+    //     return handler.reject(DioException(
+    //         requestOptions: response.requestOptions,
+    //         message: "no_internet".tr));
+    //   }
+    //   return;
+    // }
 
     if (response.statusCode == 401) {
       debugPrint("hello from 401");
@@ -78,9 +78,9 @@ class AppInterceptors extends Interceptor {
       return;
     } else if (err.response?.statusCode == 401) {
       print("zzzz");
-      if (Get.currentRoute != AppRoute.loginPageUrl) {
+      if (Get.currentRoute != AppRoute.welcomePageUrl) {
         CacheProvider.setAppToken(null);
-        Get.offAllNamed(AppRoute.loginPageUrl);
+        Get.offAllNamed(AppRoute.welcomePageUrl);
         CustomToasts.ErrorDialog(err.response?.data['status'] ?? "relogin");
       }
       // CustomToasts.ErrorDialog("relogin".tr);

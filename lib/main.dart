@@ -1,3 +1,4 @@
+import 'package:clinic/common/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,15 +28,14 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (context, child) => GetMaterialApp(
+        // textDirection: TextDirection.rtl,
         // scrollBehavior: MyBehavior(),
         debugShowCheckedModeBanner: false,
-        // theme: AppTheme.getAppTheme(context),
+        theme: AppTheme.getAppTheme(context),
         getPages: AppRoute.pages,
-        locale: CacheProvider.getAppLocale() == null
-            ? const Locale("ar")
-            : Locale(CacheProvider.getAppLocale()),
-        translations: AppTranslations(),
-        initialRoute: AppRoute.loginPageUrl,
+        // locale: Locale(CacheProvider.getAppLocale()),
+        // translations: AppTranslations(),
+        initialRoute: AppRoute.welcomePageUrl,
         // home: Payment,
         // initialBinding: InitialBindings(),
       ),
