@@ -8,4 +8,5 @@ class RegisterController extends GetxController{
   final TextEditingController nameController = TextEditingController();
   final TextEditingController confirmController = TextEditingController();
   RxInt value = 0.obs;
+  
 }

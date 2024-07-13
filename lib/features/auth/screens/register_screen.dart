@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:animated_background/animated_background.dart';
+import 'package:clinic/common/routers/app_router.dart';
 import 'package:clinic/common/widgets/custom_button.dart';
 import 'package:clinic/common/widgets/custom_textfield.dart';
 import 'package:clinic/features/auth/controllers/register_controller.dart';
@@ -67,7 +68,9 @@ class RegisterScreen extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomRadioButton(text : 'Expert',buttonvalue:  1),
+                  CustomRadioButton(text : 'Doctor',buttonvalue:  1),
+                  CustomRadioButton(text : 'Admin',buttonvalue:  2,isCenter: true,),
+                  CustomRadioButton(text : 'Employee',buttonvalue:  3,isCenter: true,),
                   CustomRadioButton(text : 'Normal',buttonvalue:  0)
                 ],
               ),
@@ -76,7 +79,9 @@ class RegisterScreen extends StatelessWidget {
               ),
                CustomButton(
                       onTap: () async {
-                        
+                        if(controller.value.value == 1){
+                          Get.toNamed(AppRoute.doctorPageUrl);
+                        }
                       },
                       height: 60,
                       width: 270,
