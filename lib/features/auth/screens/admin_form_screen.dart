@@ -1,23 +1,20 @@
-import 'package:animated_background/animated_background.dart';
-import 'package:clinic/common/constants/app_colors.dart';
 import 'package:clinic/common/widgets/custom_button.dart';
 import 'package:clinic/common/widgets/custom_textfield.dart';
 import 'package:clinic/common/widgets/loader.dart';
 import 'package:clinic/data/enums/request_status.dart';
-import 'package:clinic/features/auth/controllers/doctor_form_controller.dart';
+import 'package:clinic/features/auth/controllers/admin_form_controller.dart';
 import 'package:clinic/features/auth/widgets/background_image.dart';
 import 'package:clinic/features/auth/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
-class DoctorFormScreen extends StatelessWidget {
-  const DoctorFormScreen({super.key});
+class AdminFormScreen extends StatelessWidget {
+  const AdminFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(DoctorFormController());
+    final controller = Get.put(AdminFormController());
     return Scaffold(
       body: Stack(children: [
         BackGroundImage(),
@@ -70,43 +67,8 @@ class DoctorFormScreen extends StatelessWidget {
                   labelText: 'Address',
                   pMargin: 10,
                   hmargin: 30),
-              CustomTextField(
-                  preIcon: Icons.work_outline,
-                  textController: controller.ageController,
-                  labelText: 'Age',
-                  pMargin: 10,
-                  hmargin: 30),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: 180.w,
-                padding: REdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)),
-                child: DropdownButton<int>(
-                    borderRadius: BorderRadius.circular(15),
-                    iconEnabledColor: AppColors.primaryColor,
-                    dropdownColor: Colors.white,
-                    value: controller.selectedSection.value == 0
-                        ? null
-                        : controller.selectedSection.value,
-                    hint: Text("Section"),
-                    items: controller.sections
-                        .map(
-                          (e) => DropdownMenuItem<int>(
-                              value: e.id,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(e.name),
-                              )),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      controller.selectedSection(value);
-                    }),
-              ),
+             
+              
               SizedBox(
                 height: 60,
               ),
@@ -114,7 +76,7 @@ class DoctorFormScreen extends StatelessWidget {
                   ? CustomLoader()
                   : CustomButton(
                       onTap: () async {
-                        controller.createDoctor();
+                        controller.createAdmin();
                       },
                       height: 60.h,
                       width: 270.w,

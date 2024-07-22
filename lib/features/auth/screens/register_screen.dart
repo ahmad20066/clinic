@@ -4,6 +4,8 @@ import 'package:animated_background/animated_background.dart';
 import 'package:clinic/common/routers/app_router.dart';
 import 'package:clinic/common/widgets/custom_button.dart';
 import 'package:clinic/common/widgets/custom_textfield.dart';
+import 'package:clinic/common/widgets/loader.dart';
+import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/features/auth/controllers/register_controller.dart';
 import 'package:clinic/features/auth/widgets/background_image.dart';
 import 'package:clinic/features/auth/widgets/register/custom_radio_button.dart';
@@ -11,8 +13,6 @@ import 'package:clinic/features/auth/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-
 
 class RegisterScreen extends StatelessWidget {
   @override
@@ -68,24 +68,34 @@ class RegisterScreen extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomRadioButton(text : 'Doctor',buttonvalue:  1),
-                  CustomRadioButton(text : 'Admin',buttonvalue:  2,isCenter: true,),
-                  CustomRadioButton(text : 'Employee',buttonvalue:  3,isCenter: true,),
-                  CustomRadioButton(text : 'Normal',buttonvalue:  0)
+                  CustomRadioButton(text: 'Doctor', buttonvalue: 1),
+                  CustomRadioButton(
+                    text: 'Admin',
+                    buttonvalue: 2,
+                    isCenter: true,
+                  ),
+                  CustomRadioButton(
+                    text: 'Employee',
+                    buttonvalue: 3,
+                    isCenter: true,
+                  ),
+                  CustomRadioButton(text: 'Normal', buttonvalue: 0)
                 ],
               ),
               SizedBox(
                 height: 40,
               ),
-               CustomButton(
+              Obx(() => controller.status.value == RequestStatus.loading
+                  ? CustomLoader()
+                  : CustomButton(
                       onTap: () async {
-                        if(controller.value.value == 1){
-                          Get.toNamed(AppRoute.doctorPageUrl);
-                        }
+                        controller.register();
                       },
                       height: 60,
                       width: 270,
-                      text: controller.value.value == 1 ? 'Continue' : 'Sign Up'),
+                      text: controller.value.value == 1
+                          ? 'Continue'
+                          : 'Sign Up')),
               SizedBox(
                 height: 60,
               ),

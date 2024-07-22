@@ -1,38 +1,28 @@
-import 'dart:io';
-
 import 'package:clinic/common/utils/custom_toasts.dart';
 import 'package:clinic/data/enums/request_status.dart';
-import 'package:clinic/data/models/doctor_model.dart';
-import 'package:clinic/data/models/section_model.dart';
+import 'package:clinic/data/models/admin_model.dart';
 import 'package:clinic/data/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DoctorFormController extends GetxController {
-  TextEditingController ageController = TextEditingController();
+class AdminFormController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-  Rx<File?> image = Rx(null);
-  List<SectionModel> sections = [];
-  RxInt selectedSection = 0.obs;
-  final AuthRepository _repo = AuthRepository();
   Rx<RequestStatus> status = RequestStatus.begin.obs;
-  createDoctor() async {
+  final AuthRepository _repo = AuthRepository();
+  createAdmin() async {
     status(RequestStatus.loading);
-    final doctor = DoctorModel(
-        phone_number: phoneController.text,
+    final AdminModel admin = AdminModel(
+        phone: phoneController.text,
         address: addressController.text,
-        age: ageController.text,
-        section_id: 1,
         name: Get.arguments['name'],
         email: Get.arguments['email'],
-        type: "doctor");
-    final appResponse = await _repo.createDoctor(doctor);
-
-    print("aa");
-    if (appResponse.success) {
+        type: "admin");
+    final appResponse = await _repo.createAdmin(admin);
+    if(appResponse.success){
       status(RequestStatus.success);
-    } else {
+      
+    }else{
       status(RequestStatus.onerror);
       CustomToasts.ErrorDialog(appResponse.errorMessage!);
     }
