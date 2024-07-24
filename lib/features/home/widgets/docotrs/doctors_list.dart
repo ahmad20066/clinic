@@ -21,8 +21,7 @@ class DoctorsList extends StatelessWidget {
                 itemCount: doctors.length,
                 itemBuilder: (context, index) {
                   return DoctorWidget(
-                    text: doctors[index].name,
-                    section: doctors[index].section!.name,
+                    doctor: doctors[index],
                   );
                 }),
           ],

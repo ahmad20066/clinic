@@ -7,12 +7,14 @@ class MedicModel {
   final String target_group;
   final String date;
   final String description;
+  final String price;
   MedicModel({
     required this.id,
     required this.name,
     required this.target_group,
     required this.date,
     required this.description,
+    required this.price,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,6 +24,7 @@ class MedicModel {
       'target_group': target_group,
       'date': date,
       'description': description,
+      'price': price,
     };
   }
 
@@ -32,6 +35,7 @@ class MedicModel {
       target_group: map['target_group'] as String,
       date: map['date'] as String,
       description: map['description'] as String,
+      price: map['price'].toString() as String,
     );
   }
 

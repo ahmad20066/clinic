@@ -4,6 +4,7 @@ import 'package:clinic/features/auth/screens/login_screen.dart';
 import 'package:clinic/features/auth/screens/register_screen.dart';
 import 'package:clinic/features/auth/screens/welcome_screen.dart';
 import 'package:clinic/common/utils/page_transition.dart';
+import 'package:clinic/features/doctor/pages/doctor_details_page.dart';
 import 'package:clinic/features/home/pages/home_page.dart';
 import 'package:clinic/features/medics/pages/medic_details_page.dart';
 import 'package:clinic/features_admin/clinic/pages/create_clinic_page.dart';
@@ -11,6 +12,7 @@ import 'package:clinic/features_admin/clinic/pages/edit_clinic_page.dart';
 import 'package:clinic/features_admin/contract/pages/contracts_page.dart';
 import 'package:clinic/features_admin/contract/pages/create_contract_page.dart';
 import 'package:clinic/features_admin/contract/pages/edit_contract_page.dart';
+import 'package:clinic/features/main_layout/pages/nav_bar_page.dart';
 import 'package:clinic/features_admin/main_layout/pages/nav_bar_page.dart';
 import 'package:clinic/features_admin/medicine/pages/create_medicine_page.dart';
 import 'package:clinic/features_admin/medicine/pages/edit_medicine_page.dart';
@@ -25,9 +27,10 @@ class AppRoute {
   static const loginPageUrl = "/login-page";
   static const registerPageUrl = "/register-page";
   static const doctorPageUrl = "/doctor-form-page";
+  static const doctorDetailsPageUrl = "/doctor-details";
   static const adminPageUrl = "/admin_form";
   static const medicinePageUrl = "/medicine-details";
-
+  static const mainLayout = '/main-layout';
   //admin pages
   static const adminMainLayout = '/admin-main-layout';
   static const addClinicPage = '/add-clinic-page';
@@ -64,6 +67,8 @@ class AppRoute {
       name: medicinePageUrl,
       page: () => MedicDetails(),
     ),
+    GetPage(name: mainLayout, page: () => NavBarPage()),
+    GetPage(name: doctorDetailsPageUrl, page: () => DoctorDetailsPage()),
 
     //admin
     GetPage(name: adminMainLayout, page: () => AdminNavBarPage()),
