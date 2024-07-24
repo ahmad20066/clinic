@@ -29,7 +29,6 @@ class EndPoints {
   static const String createVaccine = '$baseUrl/api/create';
   static const String indexVaccine = '$baseUrl/api/index';
   static const String showVaccine = '$baseUrl/api/show';
-  static const String updateVaccine = '$baseUrl/api/update';
   static const String newRequest3 = '$baseUrl/api/delete';
   static const String create = '$baseUrl/api/create_se';
   static const String index = '$baseUrl/api/index_se';
@@ -80,12 +79,26 @@ class EndPoints {
   static const String showEmployee = '$baseUrl/api/show_employe';
   static const String updateEmployee = '$baseUrl/api/update_employe';
   static const String deleteEmployee = '$baseUrl/api/delete_employe';
-  static const String createContract = '$baseUrl/api/create_contract';
   static const String indexContract = '$baseUrl/api/index_contract';
   static const String showContract = '$baseUrl/api/show_contract';
   static const String updateContract = '$baseUrl/api/update_contract';
-  static const String deleteContract = '$baseUrl/api/delete_contract';
   static const String register = '$baseUrl/api/admin/register';
   static const String login = '$baseUrl/api/admin/login';
   static const String logout = '$baseUrl/api/admin/login';
+  static const String getClinicsUrl = 'index_clinic';
+  static const String updateClinicUrl = 'update_clinic';
+  static const String deleteClinicUrl = 'delete_clinic';
+  static const String createClinicUrl = 'create_clinic';
+  static const String createVaccineUrl = 'create';
+  static const String getVaccines = 'index_vaccine';
+  static const String updateVaccine = 'update';
+  static const String deleteVaccine = 'delete';
+  static const String createMedicine = 'create_medical';
+  static const String getMedicines = 'index_medical';
+  static const String updateMedicine = 'update_medical';
+  static const String deleteMedicine = 'delete_medical';
+  static const String createContract = 'create_contract';
+  static const String getContracts = 'index_contract';
+  static const String editContract = 'update_contract';
+  static const String deleteContract = 'delete_contract';
 }

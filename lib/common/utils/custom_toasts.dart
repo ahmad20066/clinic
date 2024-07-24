@@ -7,7 +7,7 @@ class CustomToasts {
         icon: icon,
         snackPosition: SnackPosition.BOTTOM,
         colorText: Colors.white,
-        duration: Duration(seconds: 5),
+        duration: Duration(seconds: 3),
         snackStyle: SnackStyle.FLOATING,
         backgroundColor: Colors.red);
   }
@@ -17,7 +17,7 @@ class CustomToasts {
         icon: icon,
         snackPosition: SnackPosition.BOTTOM,
         colorText: Colors.white,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
         snackStyle: SnackStyle.FLOATING,
         backgroundColor: Colors.green);
   }

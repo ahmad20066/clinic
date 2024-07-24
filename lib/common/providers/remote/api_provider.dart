@@ -53,7 +53,7 @@ class ApiProvider {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token != "" ? " Bearer $token" : "",
-      "lang": CacheProvider.getAppLocale()
+      // "lang": CacheProvider.getAppLocale()
     };
 
     return await dio!.post(
@@ -110,7 +110,7 @@ class ApiProvider {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token != "" ? " Bearer $token" : "",
-      "lang": CacheProvider.getAppLocale()
+      // "lang": CacheProvider.getAppLocale()
     };
     return await dio!.delete(
       url,
