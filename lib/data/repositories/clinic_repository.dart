@@ -1,5 +1,4 @@
 import 'package:clinic/common/constants/end_points.dart';
-import 'package:clinic/common/providers/local/cache_provider.dart';
 import 'package:clinic/common/providers/remote/api_provider.dart';
 import 'package:clinic/data/models/app_response.dart';
 import 'package:clinic/data/models/clinic_model.dart';

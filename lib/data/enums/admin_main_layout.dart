@@ -3,4 +3,5 @@ enum AdminMainLayoutState {
   medicine,
   vaccine,
   contract,
+  admin
 }

@@ -1,5 +1,6 @@
 import 'package:clinic/common/constants/app_colors.dart';
 import 'package:clinic/common/routers/app_router.dart';
+import 'package:clinic/common/utils/utils.dart';
 import 'package:clinic/common/widgets/custom_button_two.dart';
 import 'package:clinic/common/widgets/loader.dart';
 import 'package:clinic/data/models/contract_model.dart';
@@ -37,9 +38,12 @@ class ContractWidget extends StatelessWidget {
             SizedBox(height: 15.h),
             Text('Salary: ${model.salary}'),
             SizedBox(height: 15.h),
-            Text('Opening Date: ${model.openingDate}'),
+            Text(
+                'Opening Date: ${Utils.dateFormat(DateTime.parse(model.openingDate!), expression: 'yyyy-MM-dd')}'),
             SizedBox(height: 15.h),
-            Text('Contract Date: ${model.contractDate}'),
+            Text(
+                'Contract Date: ${Utils.dateFormat(DateTime.parse(model.contractDate!), expression: 'yyyy-MM-dd')}'),
+            SizedBox(height: 15.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

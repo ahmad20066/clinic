@@ -5,20 +5,23 @@ class ContractModel {
   String? openingDate;
   int? salary;
 
-  ContractModel({
-    this.id,
-    this.employeeId,
-    this.contractDate,
-    this.openingDate,
-    this.salary
-  });
+  ContractModel(
+      {this.id,
+      this.employeeId,
+      this.contractDate,
+      this.openingDate,
+      this.salary});
 
   ContractModel.fromJson(Map<String, dynamic> map) {
     id = map['id'];
-    employeeId = map['employee_id'];
+    employeeId = ((map['employee_id']) is int)
+        ? map['employee_id']
+        : int.parse(map['employee_id']);
     contractDate = map['date_contract'];
     openingDate = map['opening_date'];
-    salary = map['sallary'];
+    salary = ((map['sallary']) is int)
+        ? map['sallary']
+        : int.parse(map['sallary']);
   }
 
   Map<String, dynamic> toJson() {

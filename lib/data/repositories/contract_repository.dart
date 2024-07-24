@@ -5,7 +5,7 @@ import 'package:clinic/data/models/contract_model.dart';
 import 'package:dio/dio.dart';
 
 class ContractRepository {
-   Future<AppResponse> getContracts() async {
+  Future<AppResponse> getContracts() async {
     try {
       var appResponse = await ApiProvider.get(
           url: EndPoints.getContracts,
@@ -48,11 +48,10 @@ class ContractRepository {
     }
   }
 
-  Future<AppResponse> deleteMedicine(int medicineId) async {
-    print(medicineId);
+  Future<AppResponse> deleteContract(int contractId) async {
     try {
       var appResponse = await ApiProvider.delete(
-        url: '${EndPoints.deleteMedicine}/$medicineId',
+        url: '${EndPoints.deleteContract}/$contractId',
         token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
       );
       return AppResponse(

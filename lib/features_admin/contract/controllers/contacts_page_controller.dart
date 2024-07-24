@@ -16,7 +16,7 @@ class ContractsPageController extends GetxController {
     final response = await _repo.getContracts();
     print(response.data);
     if (response.success) {
-      contracts = (response.data['medical'] as List)
+      contracts = (response.data['contract'] as List)
           .map((e) => ContractModel.fromJson(e))
           .toList();
       if (contracts.isEmpty) {
@@ -32,7 +32,7 @@ class ContractsPageController extends GetxController {
 
   deleteContract(int contractId, RxBool isLoading) async {
     isLoading.value = true;
-    final response = await _repo.deleteMedicine(contractId);
+    final response = await _repo.deleteContract(contractId);
     if (response.success) {
       deleteMedicineRequestStatus(RequestStatus.success);
       contracts.removeWhere((clinic) => clinic.id == contractId);

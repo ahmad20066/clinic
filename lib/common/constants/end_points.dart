@@ -16,4 +16,5 @@ class EndPoints {
   static const String getContracts = 'index_contract';
   static const String editContract = 'update_contract';
   static const String deleteContract = 'delete_contract';
+  static const String getEmployees = 'index_employe';
 }

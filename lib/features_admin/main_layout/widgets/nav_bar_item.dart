@@ -12,6 +12,7 @@ class NavBarItem extends StatelessWidget {
   final double iconHeight;
   final bool isSvg;
   final String? svgImage;
+  final double? svgHeight;
   const NavBarItem(
       {super.key,
       this.icon,
@@ -20,7 +21,8 @@ class NavBarItem extends StatelessWidget {
       required this.onTap,
       this.iconHeight = 25,
       this.isSvg = false,
-      this.svgImage});
+      this.svgImage,
+      this.svgHeight = 30});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class NavBarItem extends StatelessWidget {
             isSvg
                 ? SvgPicture.asset(
                     svgImage!,
-                    height: 30.h,
+                    height: svgHeight!.h,
                     color: isSelected
                         ? AppColors.primaryColor
                         : const Color.fromRGBO(154, 170, 180, 1),

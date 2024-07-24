@@ -3,9 +3,12 @@ import 'package:clinic/common/utils/custom_toasts.dart';
 import 'package:clinic/common/utils/utils.dart';
 import 'package:clinic/common/widgets/custom_appbar.dart';
 import 'package:clinic/common/widgets/custom_button_two.dart';
+import 'package:clinic/common/widgets/custom_drop_down.dart';
 import 'package:clinic/common/widgets/custom_textfield_two.dart';
 import 'package:clinic/common/widgets/loader.dart';
 import 'package:clinic/data/enums/request_status.dart';
+import 'package:clinic/data/models/clinic_model.dart';
+import 'package:clinic/features_admin/clinic/controllers/clinic_controller.dart';
 import 'package:clinic/features_admin/medicine/controllers/create_medicine_controller.dart';
 import 'package:clinic/features_admin/medicine/widgets/medicine_feild_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +42,12 @@ class CreateMedicinePage extends GetView<CreateMedicineController> {
                     if (controller.dateController.selectedDate == null) {
                       CustomToasts.ErrorDialog('Please select a date');
                     }
+                    if (controller.selectedClinic.value == null) {
+                      CustomToasts.ErrorDialog('Please select a Clinic');
+                    }
                     if (controller.formKey.currentState!.validate() &&
-                        controller.dateController.selectedDate != null) {
+                        controller.dateController.selectedDate != null &&
+                        controller.selectedClinic.value != null) {
                       controller.createVaccine();
                     }
                   },
@@ -56,18 +63,31 @@ class CreateMedicinePage extends GetView<CreateMedicineController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                MedicineFeildWidget(
-                  title: 'Clinic ID',
-                  textFeild: CustomTextFieldTwo(
-                    controller: controller.clinicIdController,
-                    hintText: 'Enter Clinic ID',
-                    keyboardType: TextInputType.number,
-                    validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Feild required';
-                      }
-                      return null;
-                    },
+                Padding(
+                  padding: REdgeInsets.symmetric(horizontal: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Clinic'),
+                      Obx(
+                        () => CustomDropdownButton(
+                          value: controller.selectedClinic.value,
+                          underline: const SizedBox.shrink(),
+                          items: Get.find<ClinicController>()
+                              .clinics
+                              .map((ClinicModel clinic) {
+                            return DropdownMenuItem(
+                              value: clinic,
+                              child: Text(clinic.name!),
+                            );
+                          }).toList(),
+                          dropdownColor: AppColors.primaryColor,
+                          onChanged: (v) {
+                            controller.selectClinic(v.id!);
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 MedicineFeildWidget(

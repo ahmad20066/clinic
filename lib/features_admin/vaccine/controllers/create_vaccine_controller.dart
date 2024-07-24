@@ -1,8 +1,10 @@
 import 'package:clinic/common/utils/custom_toasts.dart';
 import 'package:clinic/common/utils/utils.dart';
 import 'package:clinic/data/enums/request_status.dart';
+import 'package:clinic/data/models/clinic_model.dart';
 import 'package:clinic/data/models/vaccine_model.dart';
 import 'package:clinic/data/repositories/vaccine_repository.dart';
+import 'package:clinic/features_admin/clinic/controllers/clinic_controller.dart';
 import 'package:clinic/features_admin/vaccine/controllers/vaccines_page_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,8 @@ class CreateVaccineController extends GetxController {
   TextEditingController targetGroupController = TextEditingController();
   DateRangePickerController dateController = DateRangePickerController();
 
+  Rx<ClinicModel?> selectedClinic = Rx(null);
+
   var createVaccineRequestStatus = RequestStatus.begin.obs;
 
   createVaccine() async {
@@ -27,7 +31,7 @@ class CreateVaccineController extends GetxController {
     VaccineModel model = VaccineModel(
       name: nameController.value.text,
       description: descriptionController.value.text,
-      clinicId: int.parse(clinicIdController.value.text),
+      clinicId: selectedClinic.value!.id,
       targetGroup: targetGroupController.value.text,
       date: Utils.dateFormat(dateController.selectedDate!,
           expression: 'yyyy-MM-dd'),
@@ -39,7 +43,8 @@ class CreateVaccineController extends GetxController {
           .vaccines
           .add(VaccineModel.fromJson(response.data['data']));
       Get.find<VaccinesPageController>().update();
-      Get.find<VaccinesPageController>().vaccinesRequestStatus(RequestStatus.success);
+      Get.find<VaccinesPageController>()
+          .vaccinesRequestStatus(RequestStatus.success);
       createVaccineRequestStatus(RequestStatus.success);
       Get.back();
       CustomToasts.SuccessDialog('Vaccine created successfully');
@@ -47,5 +52,12 @@ class CreateVaccineController extends GetxController {
       createVaccineRequestStatus(RequestStatus.onerror);
       CustomToasts.ErrorDialog(response.errorMessage!);
     }
+  }
+
+  selectClinic(int id) {
+    final clinic = Get.find<ClinicController>()
+        .clinics
+        .firstWhere((element) => element.id == id);
+    selectedClinic.value = clinic;
   }
 }
