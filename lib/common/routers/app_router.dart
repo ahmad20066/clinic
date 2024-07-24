@@ -5,6 +5,7 @@ import 'package:clinic/features/auth/screens/register_screen.dart';
 import 'package:clinic/features/auth/screens/welcome_screen.dart';
 import 'package:clinic/common/utils/page_transition.dart';
 import 'package:clinic/features/home/pages/home_page.dart';
+import 'package:clinic/features/medics/pages/medic_details_page.dart';
 import 'package:get/get.dart';
 
 class AppRoute {
@@ -14,6 +15,7 @@ class AppRoute {
   static const registerPageUrl = "/register-page";
   static const doctorPageUrl = "/doctor-form-page";
   static const adminPageUrl = "/admin_form";
+  static const medicinePageUrl = "/medicine-details";
 
   static List<GetPage> pages = [
     // GetPage(name: homePageUrl, page: () => HomePage())
@@ -39,5 +41,9 @@ class AppRoute {
         name: homePageUrl,
         page: () => HomePage(),
         transition: Transition.upToDown),
+    GetPage(
+      name: medicinePageUrl,
+      page: () => MedicDetails(),
+    ),
   ];
 }

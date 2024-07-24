@@ -20,7 +20,7 @@ class MedicsList extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: medics.length,
                 itemBuilder: (context, index) {
-                  return MedicWidget(text: medics[index].name);
+                  return MedicWidget(medicine: medics[index]);
                 }),
           ],
         ),
