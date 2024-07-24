@@ -62,4 +62,19 @@ class HomeRepository {
           success: false, data: null, errorMessage: e.message ?? e.toString());
     }
   }
+
+  Future<AppResponse> createAppointment(Map<String, dynamic> map) async {
+    try {
+      var appResponse = await ApiProvider.post(
+        url: EndPoints.appointment,
+        query: map,
+        token: CacheProvider.getAppToken(),
+      );
+      return AppResponse(
+          success: true, data: appResponse.data, errorMessage: null);
+    } on DioException catch (e) {
+      return AppResponse(
+          success: false, data: null, errorMessage: e.message ?? e.toString());
+    }
+  }
 }

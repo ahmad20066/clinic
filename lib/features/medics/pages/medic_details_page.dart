@@ -65,6 +65,25 @@ class MedicDetails extends StatelessWidget {
             ),
           ),
           SizedBox(
+            width: 200.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.monetization_on_outlined,
+                  size: 30.sp,
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Text(
+                  controller.medicine!.price + " \$",
+                  style: TextStyle(fontSize: 20.sp),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
             height: 20.h,
           ),
           ClipRRect(

@@ -21,6 +21,7 @@ class DoctorFormController extends GetxController {
   createDoctor() async {
     status(RequestStatus.loading);
     final doctor = DoctorModel(
+      id: 1,
       name: Get.arguments['name'],
       phone_number: phoneController.text,
       address: addressController.text,

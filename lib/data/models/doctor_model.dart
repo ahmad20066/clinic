@@ -11,6 +11,7 @@ class DoctorModel {
   final String working_hour;
   final int section_id;
   final String name;
+  final int id;
   SectionModel? section;
   DoctorModel({
     required this.phone_number,
@@ -19,6 +20,7 @@ class DoctorModel {
     required this.working_hour,
     required this.section_id,
     required this.name,
+    required this.id,
     this.section,
   });
 
@@ -45,6 +47,7 @@ class DoctorModel {
       section: map['section'] != null
           ? SectionModel.fromMap(map['section'] as Map<String, dynamic>)
           : null,
+      id: map['id'],
     );
   }
 }

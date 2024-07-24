@@ -14,7 +14,7 @@ class DoctorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoute.doctorDetailsPageUrl);
+        Get.toNamed(AppRoute.doctorDetailsPageUrl, arguments: doctor);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
