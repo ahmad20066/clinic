@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         getPages: AppRoute.pages,
         // locale: Locale(CacheProvider.getAppLocale()),
         // translations: AppTranslations(),
-        initialRoute: AppRoute.welcomePageUrl,
+        initialRoute: AppRoute.adminMainLayout,
         // home: Payment,
         // initialBinding: InitialBindings(),
       ),
