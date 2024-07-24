@@ -86,7 +86,9 @@ class RegisterScreen extends StatelessWidget {
                 height: 40,
               ),
               Obx(() => controller.status.value == RequestStatus.loading
-                  ? CustomLoader()
+                  ? CustomLoader(
+                      color: Colors.white,
+                    )
                   : CustomButton(
                       onTap: () async {
                         controller.register();

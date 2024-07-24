@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class DoctorFormController extends GetxController {
   TextEditingController ageController = TextEditingController();
+  TextEditingController workHourController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   Rx<File?> image = Rx(null);
@@ -20,13 +21,13 @@ class DoctorFormController extends GetxController {
   createDoctor() async {
     status(RequestStatus.loading);
     final doctor = DoctorModel(
-        phone_number: phoneController.text,
-        address: addressController.text,
-        age: ageController.text,
-        section_id: 1,
-        name: Get.arguments['name'],
-        email: Get.arguments['email'],
-        type: "doctor");
+      name: Get.arguments['name'],
+      phone_number: phoneController.text,
+      address: addressController.text,
+      age: ageController.text,
+      section_id: 1,
+      working_hour: workHourController.text,
+    );
     final appResponse = await _repo.createDoctor(doctor);
 
     print("aa");

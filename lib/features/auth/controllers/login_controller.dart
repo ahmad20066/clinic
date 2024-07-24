@@ -1,4 +1,5 @@
 import 'package:clinic/common/providers/local/cache_provider.dart';
+import 'package:clinic/common/routers/app_router.dart';
 import 'package:clinic/common/utils/custom_toasts.dart';
 import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/data/repositories/auth_repository.dart';
@@ -18,6 +19,7 @@ class LoginController extends GetxController {
     if (appResponse.success) {
       status(RequestStatus.success);
       CacheProvider.setAppToken(appResponse.data['token']);
+      Get.offAllNamed(AppRoute.homePageUrl);
     } else {
       status(RequestStatus.onerror);
       CustomToasts.ErrorDialog(appResponse.errorMessage!);

@@ -11,7 +11,7 @@ class AuthRepository {
   Future<AppResponse> login(Map<String, dynamic> loginBody) async {
     try {
       var appResponse =
-          await ApiProvider.post(url: EndPoints.loginUrl, body: loginBody);
+          await ApiProvider.post(url: EndPoints.login, body: loginBody);
 
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -22,10 +22,9 @@ class AuthRepository {
   }
 
   Future<AppResponse> register(UserModel user) async {
-    
     try {
       var appResponse = await ApiProvider.post(
-          url: EndPoints.registerUrl, body: {},query: user.toMapRegister());
+          url: EndPoints.register, body: {}, query: user.toMapRegister());
 
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -34,11 +33,11 @@ class AuthRepository {
           success: false, data: null, errorMessage: e.message ?? e.toString());
     }
   }
-    Future<AppResponse> createDoctor(DoctorModel user) async {
-    
+
+  Future<AppResponse> createDoctor(DoctorModel user) async {
     try {
       var appResponse = await ApiProvider.post(
-          url: EndPoints.registerUrl, body: {},query: user.toMap());
+          url: EndPoints.createDoctor, body: {}, query: user.toMap());
 
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -47,11 +46,11 @@ class AuthRepository {
           success: false, data: null, errorMessage: e.message ?? e.toString());
     }
   }
-   Future<AppResponse> createAdmin(AdminModel user) async {
-    
+
+  Future<AppResponse> createAdmin(AdminModel user) async {
     try {
       var appResponse = await ApiProvider.post(
-          url: EndPoints.registerUrl, body: {},query: user.toMap());
+          url: EndPoints.createAdmin, body: {}, query: user.toMap());
 
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);

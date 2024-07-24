@@ -67,13 +67,14 @@ class AdminFormScreen extends StatelessWidget {
                   labelText: 'Address',
                   pMargin: 10,
                   hmargin: 30),
-             
-              
+
               SizedBox(
                 height: 60,
               ),
               Obx(() => controller.status.value == RequestStatus.loading
-                  ? CustomLoader()
+                  ? CustomLoader(
+                      color: Colors.white,
+                    )
                   : CustomButton(
                       onTap: () async {
                         controller.createAdmin();

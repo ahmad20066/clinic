@@ -76,6 +76,12 @@ class DoctorFormScreen extends StatelessWidget {
                   labelText: 'Age',
                   pMargin: 10,
                   hmargin: 30),
+              CustomTextField(
+                  preIcon: Icons.work_outline,
+                  textController: controller.workHourController,
+                  labelText: 'Working Hours',
+                  pMargin: 10,
+                  hmargin: 30),
               SizedBox(
                 height: 20,
               ),
@@ -111,7 +117,9 @@ class DoctorFormScreen extends StatelessWidget {
                 height: 60,
               ),
               Obx(() => controller.status.value == RequestStatus.loading
-                  ? CustomLoader()
+                  ? CustomLoader(
+                      color: Colors.white,
+                    )
                   : CustomButton(
                       onTap: () async {
                         controller.createDoctor();

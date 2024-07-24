@@ -81,7 +81,9 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 Obx(() => controller.status.value == RequestStatus.loading
-                    ? CustomLoader()
+                    ? CustomLoader(
+                        color: Colors.white,
+                      )
                     : CustomButton(
                         onTap: () async {
                           controller.login();
