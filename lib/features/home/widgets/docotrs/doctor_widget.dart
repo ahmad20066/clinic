@@ -43,10 +43,10 @@ class DoctorWidget extends StatelessWidget {
                 doctor.name,
                 style: TextStyle(color: AppColors.primaryColor),
               ),
-              Text(
-                doctor.section!.name,
-                style: TextStyle(color: AppColors.primaryColor),
-              )
+              // Text(
+              //   doctor.section!.name,
+              //   style: TextStyle(color: AppColors.primaryColor),
+              // )
             ],
           ),
         ),

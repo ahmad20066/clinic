@@ -29,33 +29,6 @@ class DoctorFormScreen extends StatelessWidget {
               ),
               TitleWidget(text: 'TELL US MORE ABOUT YOURSELF'),
               SizedBox(
-                height: 20,
-              ),
-              // CircleAvatar(
-              //   radius: 55.r,
-              //   backgroundColor: Colors.white,
-              //   backgroundImage: controller.image.value == null
-              //       ? const AssetImage('assets/images/an.png')
-              //       : FileImage(controller.image.value!) as ImageProvider,
-              // ),
-              // TextButton.icon(
-              //     onPressed: () async {
-              //       final file = await ImagePicker()
-              //           .pickImage(source: ImageSource.camera);
-              //       if (file == null) {
-              //         return;
-              //       }
-
-              //     },
-              //     icon: Icon(
-              //       Icons.image,
-              //       color: Colors.white,
-              //     ),
-              //     label: Text(
-              //       'Pick a profile image',
-              //       style: TextStyle(color: Colors.white),
-              //     )),
-              SizedBox(
                 height: 40.h,
               ),
               CustomTextField(

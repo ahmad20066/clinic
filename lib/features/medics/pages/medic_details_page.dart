@@ -130,7 +130,11 @@ class MedicDetails extends StatelessWidget {
             children: [
               Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (controller.quantity.value != 1) {
+                      controller.quantity.value--;
+                    }
+                  },
                   icon: Icon(
                     Icons.remove,
                     color: Colors.red,
@@ -138,15 +142,17 @@ class MedicDetails extends StatelessWidget {
               SizedBox(
                 width: 20.w,
               ),
-              Text(
-                controller.quantity.toString(),
-                style: TextStyle(fontSize: 20.sp),
-              ),
+              Obx(() => Text(
+                    controller.quantity.toString(),
+                    style: TextStyle(fontSize: 20.sp),
+                  )),
               SizedBox(
                 width: 20.w,
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.quantity.value++;
+                  },
                   icon: Icon(
                     Icons.add,
                     color: Colors.green,

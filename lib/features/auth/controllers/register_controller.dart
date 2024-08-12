@@ -45,17 +45,22 @@ class RegisterController extends GetxController {
         Get.toNamed(AppRoute.doctorPageUrl, arguments: {
           'email': emailController.text,
           "password": passwordController.text,
-          "name" : nameController.text
+          "name": nameController.text
         });
       } else if (val == "admin") {
-         Get.toNamed(AppRoute.adminPageUrl, arguments: {
+        Get.toNamed(AppRoute.adminPageUrl, arguments: {
           'email': emailController.text,
           "password": passwordController.text,
-          "name" : nameController.text
+          "name": nameController.text
         });
       } else if (val == "user") {
+        Get.toNamed(AppRoute.patientPageUrl, arguments: {
+          'email': emailController.text,
+          "password": passwordController.text,
+          "name": nameController.text
+        });
       } else {}
-    }else{
+    } else {
       status(RequestStatus.onerror);
       CustomToasts.ErrorDialog(appResponse.errorMessage!);
     }

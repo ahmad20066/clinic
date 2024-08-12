@@ -39,6 +39,14 @@ class CacheProvider {
     return _getStorage.read("name");
   }
 
+  static setUserType(String type) {
+    return _getStorage.write("type", type);
+  }
+
+  static getUserType() {
+    return _getStorage.read("type");
+  }
+
   static setUserEmail(String val) async {
     await _getStorage.write("email", val);
   }

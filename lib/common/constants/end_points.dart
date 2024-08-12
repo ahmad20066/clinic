@@ -27,7 +27,7 @@ class EndPoints {
   static const String updatePatient = '$baseUrl/api/update_patient';
   static const String deletePatient = '$baseUrl/api/delete_patient';
   static const String createVaccine = '$baseUrl/api/create';
-  static const String indexVaccine = '$baseUrl/api/index';
+  static const String indexVaccine = '$baseUrl/api/index_vaccine';
   static const String showVaccine = '$baseUrl/api/show';
   static const String newRequest3 = '$baseUrl/api/delete';
   static const String create = '$baseUrl/api/create_se';
@@ -90,7 +90,6 @@ class EndPoints {
   static const String deleteClinicUrl = 'delete_clinic';
   static const String createClinicUrl = 'create_clinic';
   static const String createVaccineUrl = 'create';
-  static const String getVaccines = 'index_vaccine';
   static const String updateVaccine = 'update';
   static const String deleteVaccine = 'delete';
   static const String createMedicine = 'create_medical';

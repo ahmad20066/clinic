@@ -8,28 +8,34 @@ class AdminModel extends UserModel {
   final String address;
   AdminModel({
     required this.phone,
-    required this.address, required super.name, required super.email, required super.type,
+    required this.address,
+    required super.name,
+    required super.email,
+    required super.type,
   });
-
-  
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'phone': phone,
       'address': address,
+      'name': super.name
     };
   }
 
   factory AdminModel.fromMap(Map<String, dynamic> map) {
     return AdminModel(
       phone: map['phone'] as String,
-      address: map['address'] as String, name: '', email: '', type: '',
+      address: map['address'] as String,
+      name: '',
+      email: '',
+      type: '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AdminModel.fromJson(String source) => AdminModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AdminModel.fromJson(String source) =>
+      AdminModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'AdminModel(phone: $phone, address: $address)';
@@ -37,10 +43,8 @@ class AdminModel extends UserModel {
   @override
   bool operator ==(covariant AdminModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.phone == phone &&
-      other.address == address;
+
+    return other.phone == phone && other.address == address;
   }
 
   @override

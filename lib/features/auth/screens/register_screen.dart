@@ -70,16 +70,11 @@ class RegisterScreen extends StatelessWidget {
                 children: [
                   CustomRadioButton(text: 'Doctor', buttonvalue: 1),
                   CustomRadioButton(
-                    text: 'Admin',
-                    buttonvalue: 2,
-                    isCenter: true,
-                  ),
-                  CustomRadioButton(
                     text: 'Employee',
                     buttonvalue: 3,
                     isCenter: true,
                   ),
-                  CustomRadioButton(text: 'Normal', buttonvalue: 0)
+                  CustomRadioButton(text: 'Patient', buttonvalue: 0)
                 ],
               ),
               SizedBox(

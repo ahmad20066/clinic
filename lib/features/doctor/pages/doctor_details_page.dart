@@ -54,10 +54,10 @@ class DoctorDetailsPage extends StatelessWidget {
                           color: Colors.white),
                     ),
                     Spacer(),
-                    Text(
-                      controller.doctor!.section!.name,
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    // Text(
+                    //   controller.doctor!.section!.name,
+                    //   style: TextStyle(color: Colors.white),
+                    // ),
                     SizedBox(
                       width: 30.w,
                     ),
@@ -146,15 +146,15 @@ class DoctorDetailsPage extends StatelessWidget {
             SizedBox(
               height: 40.h,
             ),
-            Align(
-                alignment: Alignment(-0.8, 1),
-                child: Text(
-                  controller.doctor!.section!.name,
-                  style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold),
-                )),
+            // Align(
+            //     alignment: Alignment(-0.8, 1),
+            //     child: Text(
+            //       controller.doctor!.section!.name,
+            //       style: TextStyle(
+            //           color: AppColors.primaryColor,
+            //           fontSize: 25.sp,
+            //           fontWeight: FontWeight.bold),
+            //     )),
             SizedBox(
               height: 5.h,
             ),

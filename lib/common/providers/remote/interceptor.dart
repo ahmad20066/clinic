@@ -78,15 +78,23 @@ class AppInterceptors extends Interceptor {
       return;
     } else if (err.response?.statusCode == 401) {
       print("zzzz");
-      if (Get.currentRoute != AppRoute.welcomePageUrl) {
-        CacheProvider.setAppToken(null);
-        Get.offAllNamed(AppRoute.welcomePageUrl);
-        CustomToasts.ErrorDialog(err.response?.data['status'] ?? "relogin");
-      }
+      // if (Get.currentRoute != AppRoute.welcomePageUrl) {
+      //   CacheProvider.setAppToken(null);
+      //   Get.offAllNamed(AppRoute.welcomePageUrl);
+      //   CustomToasts.ErrorDialog(err.response?.data['status'] ?? "relogin");
+      // }
       // CustomToasts.ErrorDialog("relogin".tr);
+      String? error = (err.response?.data as Map)['message'] ?? "wrong_request";
+      return handler.next(
+        DioException(
+          requestOptions: err.requestOptions,
+          message: error!.tr,
+        ),
+      );
     } else if (err.response?.statusCode == 422) {
       // String? error = err.response?.data['message'] ?? "wrong_request";
-      String? error = (err.response?.data as Map).entries.first.value[0] ?? "wrong_request";
+      String? error =
+          (err.response?.data as Map).entries.first.value[0] ?? "wrong_request";
 
       return handler.next(
         DioException(
