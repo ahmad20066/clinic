@@ -1,3 +1,4 @@
+import 'package:clinic/common/routers/app_router.dart';
 import 'package:clinic/common/utils/custom_toasts.dart';
 import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/data/models/admin_model.dart';
@@ -22,6 +23,7 @@ class AdminFormController extends GetxController {
     final appResponse = await _repo.createAdmin(admin);
     if (appResponse.success) {
       status(RequestStatus.success);
+      Get.offAllNamed(AppRoute.mainLayout);
     } else {
       status(RequestStatus.onerror);
       CustomToasts.ErrorDialog(appResponse.errorMessage!);

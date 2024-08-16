@@ -1,6 +1,7 @@
 import 'package:clinic/features/auth/screens/admin_form_screen.dart';
 import 'package:clinic/features/auth/screens/doctor_form_screen.dart';
 import 'package:clinic/features/auth/screens/login_screen.dart';
+import 'package:clinic/features/auth/screens/patient_form_screen.dart';
 import 'package:clinic/features/auth/screens/register_screen.dart';
 import 'package:clinic/features/auth/screens/welcome_screen.dart';
 import 'package:clinic/common/utils/page_transition.dart';
@@ -10,6 +11,7 @@ import 'package:clinic/features/medics/pages/medic_details_page.dart';
 import 'package:clinic/features_admin/admin/pages/admins_page.dart';
 import 'package:clinic/features_admin/admin/pages/create_admin_page.dart';
 import 'package:clinic/features_admin/admin/pages/edit_admin_page.dart';
+import 'package:clinic/features/splash/pages/splash_screen.dart';
 import 'package:clinic/features_admin/clinic/pages/create_clinic_page.dart';
 import 'package:clinic/features_admin/clinic/pages/edit_clinic_page.dart';
 import 'package:clinic/features_admin/contract/pages/contracts_page.dart';
@@ -23,9 +25,7 @@ import 'package:clinic/features_admin/medicine/pages/medicines_page.dart';
 import 'package:clinic/features_admin/vaccine/pages/create_vaccine_page.dart';
 import 'package:clinic/features_admin/vaccine/pages/edit_vaccine_page.dart';
 import 'package:clinic/features_employee/main_layout/pages/nav_bar_page.dart';
-import 'package:get/get.dart';
-
-class AppRoute {
+>>>>>>> 36c468b8857fd8dba19ba5f9e3118d6a40cbca7a
   static const homePageUrl = "/home";
   static const welcomePageUrl = "/welcome-page";
   static const loginPageUrl = "/login-page";
@@ -33,8 +33,10 @@ class AppRoute {
   static const doctorPageUrl = "/doctor-form-page";
   static const doctorDetailsPageUrl = "/doctor-details";
   static const adminPageUrl = "/admin_form";
+  static const patientPageUrl = "/patient_form";
   static const medicinePageUrl = "/medicine-details";
   static const mainLayout = '/main-layout';
+  static const doctormainLayout = '/doctor-main-layout';
   //admin pages
   static const adminMainLayout = '/admin-main-layout';
   static const addClinicPage = '/add-clinic-page';
@@ -51,9 +53,14 @@ class AppRoute {
   static const createAdminPage = '/create-admin-page';
   static const editAdminPage = '/edit-admin-page';
   static const employeeMainLayoutPage = '/employee-mainlayout-page';
+  static const splashPage = "/splash";
 
   static List<GetPage> pages = [
-    // GetPage(name: homePageUrl, page: () => HomePage())
+    GetPage(
+      name: registerPageUrl,
+      page: () => RegisterScreen(),
+      transition: Transition.rightToLeft,
+    ),
     GetPage(name: welcomePageUrl, page: () => WelcomeScreen()),
 
     GetPage(
@@ -62,6 +69,9 @@ class AppRoute {
       transition: Transition.leftToRight,
     ),
     GetPage(name: doctorPageUrl, page: () => DoctorFormScreen()),
+    GetPage(name: doctormainLayout, page: () => DoctorMainLayout()),
+    GetPage(name: patientPageUrl, page: () => PatientFormScreen()),
+    GetPage(name: splashPage, page: () => SplashScreen()),
 
     GetPage(
         name: adminPageUrl,

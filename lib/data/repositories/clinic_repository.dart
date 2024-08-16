@@ -1,4 +1,5 @@
 import 'package:clinic/common/constants/end_points.dart';
+import 'package:clinic/common/providers/local/cache_provider.dart';
 import 'package:clinic/common/providers/remote/api_provider.dart';
 import 'package:clinic/data/models/app_response.dart';
 import 'package:clinic/data/models/clinic_model.dart';
@@ -9,7 +10,7 @@ class ClinicRepository {
     try {
       var appResponse = await ApiProvider.get(
           url: EndPoints.getClinicsUrl,
-          token: EndPoints.token);
+          token: CacheProvider.getAppToken());
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
@@ -23,7 +24,7 @@ class ClinicRepository {
       var appResponse = await ApiProvider.post(
         url: EndPoints.createClinicUrl,
         query: model.toJson(),
-        token: EndPoints.token,
+        token: CacheProvider.getAppToken(),
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -38,7 +39,7 @@ class ClinicRepository {
       var appResponse = await ApiProvider.post(
         url: '${EndPoints.updateClinicUrl}/${model.id}',
         query: model.toJson(),
-        token: EndPoints.token,
+        token: CacheProvider.getAppToken(),
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -52,7 +53,7 @@ class ClinicRepository {
     try {
       var appResponse = await ApiProvider.delete(
         url: '${EndPoints.deleteClinicUrl}/$clinicId',
-        token: EndPoints.token,
+        token: CacheProvider.getAppToken(),
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);

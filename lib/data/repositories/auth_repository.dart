@@ -1,5 +1,7 @@
+import 'package:clinic/common/providers/local/cache_provider.dart';
 import 'package:clinic/data/models/admin_model.dart';
 import 'package:clinic/data/models/doctor_model.dart';
+import 'package:clinic/data/models/patient_model.dart';
 import 'package:clinic/data/models/user_model.dart';
 import 'package:dio/dio.dart';
 
@@ -60,6 +62,21 @@ class AuthRepository {
     }
   }
 
+  Future<AppResponse> createPatient(PatientModel user) async {
+    try {
+      var appResponse = await ApiProvider.post(
+          url: EndPoints.createPatient,
+          body: {},
+          query: user.toMap(),
+          token: CacheProvider.getAppToken());
+
+      return AppResponse(
+          success: true, data: appResponse.data, errorMessage: null);
+    } on DioException catch (e) {
+      return AppResponse(
+          success: false, data: null, errorMessage: e.message ?? e.toString());
+    }
+  }
   // Future<AppResponse> logOut() async {
   //   try {
   //     var appResponse = await ApiProvider.post(

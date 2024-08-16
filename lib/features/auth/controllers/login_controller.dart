@@ -19,7 +19,19 @@ class LoginController extends GetxController {
     if (appResponse.success) {
       status(RequestStatus.success);
       CacheProvider.setAppToken(appResponse.data['token']);
-      Get.offAllNamed(AppRoute.homePageUrl);
+      CacheProvider.setUserName(appResponse.data['user']['name']);
+      CacheProvider.setUserEmail(appResponse.data['user']['email']);
+      CacheProvider.setUserID(appResponse.data['user']['id']);
+      final type = appResponse.data['user']['type'];
+      CacheProvider.setUserType(appResponse.data['user']['type']);
+      if (type == "user") {
+        Get.offAllNamed(AppRoute.mainLayout);
+      } else if (type == "doctor") {
+        Get.offAllNamed(AppRoute.doctormainLayout);
+      } else if (type == 'admin') {
+        Get.offAllNamed(AppRoute.adminMainLayout);
+      } else {}
+      // Get.offAllNamed(AppRoute.homePageUrl);
     } else {
       status(RequestStatus.onerror);
       CustomToasts.ErrorDialog(appResponse.errorMessage!);

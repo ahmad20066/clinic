@@ -12,6 +12,9 @@ class CustomTextField extends StatelessWidget {
   bool isLarge;
   double? width;
   TextInputAction action;
+  final onTap;
+  final bool readOnly;
+  bool isFill = false;
 
   CustomTextField(
       {super.key,
@@ -20,6 +23,9 @@ class CustomTextField extends StatelessWidget {
       required this.pMargin,
       required this.hmargin,
       this.isPrivate = false,
+      this.readOnly = false,
+      this.onTap,
+      this.isFill = false,
       this.type,
       this.isLarge = false,
       this.action = TextInputAction.next,
@@ -33,6 +39,8 @@ class CustomTextField extends StatelessWidget {
       height: isLarge ? 100.h : null,
       margin: EdgeInsets.symmetric(horizontal: hmargin, vertical: pMargin),
       child: TextFormField(
+          onTap: onTap,
+          readOnly: readOnly,
           keyboardType: type,
           obscureText: isLarge ? false : isPrivate,
           controller: textController,
@@ -46,7 +54,7 @@ class CustomTextField extends StatelessWidget {
                     color: AppColors.primaryColor,
                   ),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: isFill ? AppColors.primaryColor : Colors.white,
             isDense: true,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 22, horizontal: 5),

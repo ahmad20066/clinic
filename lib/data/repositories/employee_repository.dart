@@ -1,4 +1,5 @@
 import 'package:clinic/common/constants/end_points.dart';
+import 'package:clinic/common/providers/local/cache_provider.dart';
 import 'package:clinic/common/providers/remote/api_provider.dart';
 import 'package:clinic/data/models/app_response.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +8,7 @@ class EmployeeRepository {
   Future<AppResponse> getEmployees() async {
     try {
       var appResponse = await ApiProvider.get(
-          url: EndPoints.getEmployees, token: EndPoints.token);
+          url: EndPoints.getEmployees, token: CacheProvider.getAppToken());
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
@@ -22,7 +23,7 @@ class EmployeeRepository {
       var appResponse = await ApiProvider.post(
           url: EndPoints.getReviews,
           query: {"id": id, "date": date},
-          token: EndPoints.token);
+          token: CacheProvider.getAppToken());
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
@@ -35,7 +36,7 @@ class EmployeeRepository {
     try {
       var appResponse = await ApiProvider.post(
           url: EndPoints.getEmpReviews,
-          token: EndPoints.token,
+          token: CacheProvider.getAppToken(),
           query: {'id': id});
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -48,7 +49,7 @@ class EmployeeRepository {
   Future<AppResponse> getInvoices() async {
     try {
       var appResponse = await ApiProvider.get(
-          url: EndPoints.getInvoices, token: EndPoints.token);
+          url: EndPoints.getInvoices, token: CacheProvider.getAppToken());
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
