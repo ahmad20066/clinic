@@ -1,6 +1,5 @@
 import 'package:clinic/common/constants/app_colors.dart';
 import 'package:clinic/common/utils/custom_toasts.dart';
-import 'package:clinic/common/utils/utils.dart';
 import 'package:clinic/common/widgets/custom_appbar.dart';
 import 'package:clinic/common/widgets/custom_button_two.dart';
 import 'package:clinic/common/widgets/custom_drop_down.dart';

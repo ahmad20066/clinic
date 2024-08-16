@@ -85,7 +85,9 @@ class AppInterceptors extends Interceptor {
       }
       // CustomToasts.ErrorDialog("relogin".tr);
     } else if (err.response?.statusCode == 422) {
-      String? error = err.response?.data['message'] ?? "wrong_request";
+      // String? error = err.response?.data['message'] ?? "wrong_request";
+      String? error = (err.response?.data as Map).entries.first.value[0] ?? "wrong_request";
+
       return handler.next(
         DioException(
           requestOptions: err.requestOptions,

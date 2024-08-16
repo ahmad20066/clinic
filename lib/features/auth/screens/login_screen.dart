@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:clinic/common/widgets/custom_button.dart';
 import 'package:clinic/common/widgets/custom_textfield.dart';
+import 'package:clinic/common/widgets/loader.dart';
+import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/features/auth/controllers/login_controller.dart';
 import 'package:clinic/features/auth/widgets/background_image.dart';
 import 'package:clinic/features/auth/widgets/title_widget.dart';
@@ -10,12 +12,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:animated_background/animated_background.dart';
 
-
-class LoginScreen extends StatelessWidget{
-   final controller = Get.put(LoginController());
+class LoginScreen extends StatelessWidget {
+  final controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       body: Stack(
         children: [
@@ -73,23 +73,24 @@ class LoginScreen extends StatelessWidget{
                         activeColor: Colors.white,
                         // checkColor: GLobalVariables.baseColor,
                         value: true,
-                        onChanged: (value) {
-                          
-                        }),
+                        onChanged: (value) {}),
                     Text(
                       'Keep Me Signed In',
                       style: TextStyle(color: Colors.white),
                     )
                   ],
                 ),
-                 CustomButton(
+                Obx(() => controller.status.value == RequestStatus.loading
+                    ? CustomLoader(
+                        color: Colors.white,
+                      )
+                    : CustomButton(
                         onTap: () async {
-                         
-                          
+                          controller.login();
                         },
                         height: 60,
                         width: 270,
-                        text: 'Log In'),
+                        text: 'Log In')),
                 SizedBox(
                   height: 60,
                 ),

@@ -15,11 +15,15 @@ class ClinicController extends GetxController {
     clinicsRequestStatus(RequestStatus.loading);
     final response = await _repo.getClinics();
     if (response.success) {
-      print(response.data);
       clinics = (response.data['clinic'] as List)
           .map((e) => ClinicModel.fromJson(e))
           .toList();
-      clinicsRequestStatus(RequestStatus.success);
+      if (clinics.isEmpty) {
+        clinicsRequestStatus(RequestStatus.nodata);
+      } else {
+        clinicsRequestStatus(RequestStatus.success);
+      }
+      
     } else {
       clinicsRequestStatus(RequestStatus.onerror);
       CustomToasts.ErrorDialog(response.errorMessage!);
@@ -33,7 +37,7 @@ class ClinicController extends GetxController {
       deleteClinicRequestStatus(RequestStatus.success);
       clinics.removeWhere((clinic) => clinic.id == clinicId);
       isLoading.value = false;
-      if(clinics.isEmpty){
+      if (clinics.isEmpty) {
         clinicsRequestStatus(RequestStatus.nodata);
       }
       update();
@@ -43,7 +47,6 @@ class ClinicController extends GetxController {
       isLoading.value = false;
     }
   }
-  
 
   @override
   void onInit() {

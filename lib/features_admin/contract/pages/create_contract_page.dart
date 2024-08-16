@@ -7,7 +7,7 @@ import 'package:clinic/common/widgets/custom_textfield_two.dart';
 import 'package:clinic/common/widgets/loader.dart';
 import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/data/models/employee_model.dart';
-import 'package:clinic/features_admin/contract/controllers/create_contract_page.dart';
+import 'package:clinic/features_admin/contract/controllers/create_contract_controller.dart';
 import 'package:clinic/features_admin/contract/widgets/contract_feild_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

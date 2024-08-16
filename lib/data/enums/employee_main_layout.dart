@@ -1,0 +1,1 @@
+enum EmployeeMainLayoutState{invoices, reports, employees}

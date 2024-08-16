@@ -30,16 +30,6 @@ class AdminNavBarWidget extends GetWidget<AdminNavBarController> {
             children: [
               NavBarItem(
                   isSvg: true,
-                  svgImage: 'assets/svg/icons/admin.svg',
-                  // svgHeight: 25,
-                  title: "Admin",
-                  isSelected:
-                      controller.mainState.value == AdminMainLayoutState.admin,
-                  onTap: () {
-                    controller.setMainState(AdminMainLayoutState.admin);
-                  }),
-              NavBarItem(
-                  isSvg: true,
                   svgImage: 'assets/svg/icons/clinic.svg',
                   title: "Clinics",
                   isSelected:
@@ -55,6 +45,16 @@ class AdminNavBarWidget extends GetWidget<AdminNavBarController> {
                       AdminMainLayoutState.vaccine,
                   onTap: () {
                     controller.setMainState(AdminMainLayoutState.vaccine);
+                  }),
+              NavBarItem(
+                  isSvg: true,
+                  svgImage: 'assets/svg/icons/admin.svg',
+                  // svgHeight: 25,
+                  title: "Admin",
+                  isSelected:
+                      controller.mainState.value == AdminMainLayoutState.admin,
+                  onTap: () {
+                    controller.setMainState(AdminMainLayoutState.admin);
                   }),
               NavBarItem(
                   isSvg: true,

@@ -2,6 +2,8 @@ import 'package:animated_background/animated_background.dart';
 import 'package:clinic/common/constants/app_colors.dart';
 import 'package:clinic/common/widgets/custom_button.dart';
 import 'package:clinic/common/widgets/custom_textfield.dart';
+import 'package:clinic/common/widgets/loader.dart';
+import 'package:clinic/data/enums/request_status.dart';
 import 'package:clinic/features/auth/controllers/doctor_form_controller.dart';
 import 'package:clinic/features/auth/widgets/background_image.dart';
 import 'package:clinic/features/auth/widgets/title_widget.dart';
@@ -29,32 +31,32 @@ class DoctorFormScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              CircleAvatar(
-                radius: 55.r,
-                backgroundColor: Colors.white,
-                backgroundImage: controller.image.value == null
-                    ? const AssetImage('assets/images/an.png')
-                    : FileImage(controller.image.value!) as ImageProvider,
-              ),
-              TextButton.icon(
-                  onPressed: () async {
-                    final file = await ImagePicker()
-                        .pickImage(source: ImageSource.camera);
-                    if (file == null) {
-                      return;
-                    }
-                    
-                  },
-                  icon: Icon(
-                    Icons.image,
-                    color: Colors.white,
-                  ),
-                  label: Text(
-                    'Pick a profile image',
-                    style: TextStyle(color: Colors.white),
-                  )),
+              // CircleAvatar(
+              //   radius: 55.r,
+              //   backgroundColor: Colors.white,
+              //   backgroundImage: controller.image.value == null
+              //       ? const AssetImage('assets/images/an.png')
+              //       : FileImage(controller.image.value!) as ImageProvider,
+              // ),
+              // TextButton.icon(
+              //     onPressed: () async {
+              //       final file = await ImagePicker()
+              //           .pickImage(source: ImageSource.camera);
+              //       if (file == null) {
+              //         return;
+              //       }
+
+              //     },
+              //     icon: Icon(
+              //       Icons.image,
+              //       color: Colors.white,
+              //     ),
+              //     label: Text(
+              //       'Pick a profile image',
+              //       style: TextStyle(color: Colors.white),
+              //     )),
               SizedBox(
-                height: 10,
+                height: 40.h,
               ),
               CustomTextField(
                   preIcon: Icons.numbers,
@@ -74,46 +76,57 @@ class DoctorFormScreen extends StatelessWidget {
                   labelText: 'Age',
                   pMargin: 10,
                   hmargin: 30),
+              CustomTextField(
+                  preIcon: Icons.work_outline,
+                  textController: controller.workHourController,
+                  labelText: 'Working Hours',
+                  pMargin: 10,
+                  hmargin: 30),
               SizedBox(
                 height: 20,
               ),
               Container(
                 width: 180.w,
                 padding: REdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: DropdownButton<int>(
-                          
-                          borderRadius: BorderRadius.circular(15),
-                          iconEnabledColor:AppColors.primaryColor,
-                          dropdownColor: Colors.white,
-                          value: controller.selectedSection.value == 0 ? null : controller.selectedSection.value,
-                          hint: Text("Section"),
-                          items: controller.sections
-                              .map(
-                                (e) => DropdownMenuItem<int>(
-                                    value: e.id,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(e.name),
-                                    )),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            controller.selectedSection(value);
-                          }),
-                    ),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15)),
+                child: DropdownButton<int>(
+                    borderRadius: BorderRadius.circular(15),
+                    iconEnabledColor: AppColors.primaryColor,
+                    dropdownColor: Colors.white,
+                    value: controller.selectedSection.value == 0
+                        ? null
+                        : controller.selectedSection.value,
+                    hint: Text("Section"),
+                    items: controller.sections
+                        .map(
+                          (e) => DropdownMenuItem<int>(
+                              value: e.id,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(e.name),
+                              )),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      controller.selectedSection(value);
+                    }),
+              ),
               SizedBox(
                 height: 60,
               ),
-              CustomButton(
-                  onTap: () async {
-                    
-                  },
-                  height: 60.h,
-                  width: 270.w,
-                  text: 'Sign Up'),
+              Obx(() => controller.status.value == RequestStatus.loading
+                  ? CustomLoader(
+                      color: Colors.white,
+                    )
+                  : CustomButton(
+                      onTap: () async {
+                        controller.createDoctor();
+                      },
+                      height: 60.h,
+                      width: 270.w,
+                      text: 'Sign Up')),
             ],
           ),
         )

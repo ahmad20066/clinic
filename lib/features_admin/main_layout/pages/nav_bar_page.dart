@@ -1,4 +1,5 @@
 import 'package:clinic/data/enums/admin_main_layout.dart';
+import 'package:clinic/features_admin/admin/pages/admins_page.dart';
 import 'package:clinic/features_admin/clinic/pages/clinic_page.dart';
 import 'package:clinic/features_admin/contract/pages/contracts_page.dart';
 import 'package:clinic/features_admin/medicine/pages/medicines_page.dart';
@@ -28,6 +29,8 @@ class AdminNavBarPage extends GetView<AdminNavBarController> {
               return MedicinesPage();
             case AdminMainLayoutState.contract:
               return ContractsPage();
+            case AdminMainLayoutState.admin:
+              return AdminsPage();
             // case MainLayouState.wishlists:
             //   return CartPage();
             // case MainLayouState.profile:

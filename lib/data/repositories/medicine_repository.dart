@@ -9,7 +9,7 @@ class MedicineRepository {
     try {
       var appResponse = await ApiProvider.get(
           url: EndPoints.getMedicines,
-          token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b');
+          token: EndPoints.token);
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
@@ -23,7 +23,7 @@ class MedicineRepository {
       var appResponse = await ApiProvider.post(
         url: EndPoints.createMedicine,
         query: model.toJson(),
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -38,7 +38,7 @@ class MedicineRepository {
       var appResponse = await ApiProvider.post(
         url: '${EndPoints.updateMedicine}/${model.id}',
         query: model.toJson(),
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -53,7 +53,7 @@ class MedicineRepository {
     try {
       var appResponse = await ApiProvider.delete(
         url: '${EndPoints.deleteMedicine}/$vaccineId',
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);

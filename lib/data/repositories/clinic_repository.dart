@@ -9,7 +9,7 @@ class ClinicRepository {
     try {
       var appResponse = await ApiProvider.get(
           url: EndPoints.getClinicsUrl,
-          token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b');
+          token: EndPoints.token);
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
     } on DioException catch (e) {
@@ -23,7 +23,7 @@ class ClinicRepository {
       var appResponse = await ApiProvider.post(
         url: EndPoints.createClinicUrl,
         query: model.toJson(),
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -38,7 +38,7 @@ class ClinicRepository {
       var appResponse = await ApiProvider.post(
         url: '${EndPoints.updateClinicUrl}/${model.id}',
         query: model.toJson(),
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
@@ -52,7 +52,7 @@ class ClinicRepository {
     try {
       var appResponse = await ApiProvider.delete(
         url: '${EndPoints.deleteClinicUrl}/$clinicId',
-        token: '2|D1pj0W1v04aBcr1FxrI6egKiNvs1JCA20HMP0Z0D973e269b',
+        token: EndPoints.token,
       );
       return AppResponse(
           success: true, data: appResponse.data, errorMessage: null);
